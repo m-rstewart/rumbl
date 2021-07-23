@@ -134,12 +134,13 @@ defmodule Rumbl.Multimedia do
     |> Repo.insert()
   end
 
-  def list_annotations(%Video{} = video) do
+  def list_annotations(%Video{} = video, since_id \\ 0) do
     Repo.all(
       from a in Ecto.assoc(video, :annotations),
-      order_by: [asc: a.at, asc: a.id],
-      limit: 500,
-      preload: [:user]
+        where: a.id > ^since_id,
+        order_by: [asc: a.at, asc: a.id],
+        limit: 500,
+        preload: [:user]
     )
   end
 
