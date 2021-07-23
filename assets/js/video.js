@@ -36,10 +36,11 @@ let Video = {
     })
 
     vidChannel.join()
-      .receive("ok", resp => console.log("joined the video channel", resp))
+      .receive("ok", ({ annotations }) => {
+        annotations.forEach(annotation => this.renderAnnotation(msgContainer, annotation))
+      })
       .receive("error", reason => console.log("joined failed", reason))
 
-    vidChannel.on("ping", ({count}) => console.log("PING", count))
   },
 
   esc(str) {
@@ -48,7 +49,7 @@ let Video = {
     return div.innerHTML
   },
 
-  renderAnnotation(msgContainer, { user, body, at}) {
+  renderAnnotation(msgContainer, { user, body, at }) {
     let template = document.createElement("div")
 
     template.innerHTML = `
