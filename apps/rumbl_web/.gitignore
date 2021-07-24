@@ -20,19 +20,15 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-rumbl-*.tar
+rumbl_web-*.tar
 
 # If NPM crashes, it generates a log, let's ignore it too.
 npm-debug.log
 
 # The directory NPM downloads your dependencies sources to.
-apps/rumbl_web/assets/node_modules/
+/assets/node_modules/
 
 # Since we are building assets from assets/,
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
-apps/rumbl/priv/static/
-
-.vscode
-
-.elixir_ls
+/priv/static/
